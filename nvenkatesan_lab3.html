@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
+<title>Sales Tax Calcualtion </title>
+<nvenkatesan_lab3 class="html"></nvenkatesan_lab3>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=10">
+  <title>A Web Page</title>
+  <link rel="stylesheet" href="nvenkatesan_lab3.css">
+</head> 
+<body>
+<Center>
+<div id="Content">
+      <h1>Sales Tax Calculator </h1>
+      <p>ITMD-4/565 Lab 1- Narendra - nvenkatesan@hawk.iit.edu</p>
+  </Center>
+  <Center>
+    <form>
+      <div>
+        <p>Enter subtotal and Tax Rate and click the calculate button to show the sales tax amount and the total. Click
+          the clear button to clear out all form fields. Tax Rate should be a percentage but do not enter a % sign in
+          the tax rate box.</p>
+        <label for="subtotal">Subtotal:</label>
+        <input type="text" id="subtotal" /><br />
+
+        <label for="taxRate">Tax Rate:</label>
+        <input type="text" id="taxRate" /><br />
+
+        <label for="salesTax">Sales Tax:</label>
+        <input type="text" id="salesTax" readonly="true" /><br />
+        
+        <label for="total">Total:</label>
+        <input type="text" id="total" readonly="true" /><br />
+        
+        <label>&nbsp;</label>
+        <button type="button" onclick="calculate()"> Calculate</button>
+
+        <label>&nbsp;</label>
+        <button type="button"onclick="clearForm()"> Clear</button>
+ 
+      </div>
+  </Center>
+  <Center>
+    <img src="Sales.png" alt="Sales Calculator" style="width:600 px;height:550px;">
+  </Center>
+  <Center>
+    <p>c Narendra | nvenkatesan@hawk.iit.edu</p>
+  </Center>
+  <script source = "nvenkatesan_lab1.html">
+
+ function Sales () {
+    window.addEventListener("load",Sales());
+}
+function calculate() {
+  let subtotal = document.getElementById("subtotal").value;
+  let chk1 = false;
+  let chk2 = false;
+  if (subtotal <= 0) {
+      alert("Subtotal cannot be less than $0.00 (a negative value). Please enter a valid amount.");
+      chk1 = false;
+  }
+  else {
+      chk1 = true;
+      console.log("Subtotal worked");
+
+  }
+  let taxRate = document.getElementById("taxRate").value;
+                if (taxRate > 0 && taxRate <= 20) {
+                    
+                    chk2 =true;
+                }
+                else {
+                  alert("Tax Rate does not fall between 0% and 20%. Please enter an appropriate value.");
+                    chk2 = false;
+                }
+              
+                if (chk1 ==true && chk2 == true){
+                  let tax = Number(subtotal)* Number(taxRate/100);
+                  console.log("tax" + tax)
+                  document.getElementById("salesTax").value = tax;
+                  let Total = Number(subtotal)+ Number(tax);
+                  document.getElementById("total").value =Total;
+                  event.preventDefault();
+                }
+                else{
+                  alert("Check all values before resubmitting!Else, use clear to reset all fields");
+                  document.getElementById("taxRate").value = '';
+                  document.getElementById("total").value = '';
+                  event.preventDefault();
+                }
+              }
+
+//function to clear the textbox
+
+function clearForm(){
+
+document.getElementById('subtotal').value = "";
+
+document.getElementById('taxRate').value = "";
+
+document.getElementById("salesTax").value = "";
+
+document.getElementById("total").value = "";
+
+}   
+</script>
+</body>
+</div>
+</div>
+</form>
+</html>
